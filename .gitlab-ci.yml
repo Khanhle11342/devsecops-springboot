@@ -1,0 +1,24 @@
+stages:
+  - build
+  - docker
+
+build:
+  stage: build
+  image: maven:3.9.6-eclipse-temurin-17
+  tags:
+    - docker
+  script:
+    - mvn clean package -DskipTests
+
+docker-build:
+  stage: docker
+  image: docker:latest
+  tags:
+    - docker
+  services:
+    - docker:dind
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+  script:
+    - docker build -t springboot-app .
+
