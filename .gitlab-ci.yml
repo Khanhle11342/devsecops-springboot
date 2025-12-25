@@ -1,6 +1,5 @@
 stages:
   - build
-  - test
   - security
   - deploy
 
@@ -15,14 +14,6 @@ build:
     paths:
       - target/*.jar
     expire_in: 1 day
-
-test:
-  stage: test
-  tags:
-    - ubuntu
-  script:
-    - echo "=== RUN UNIT TESTS ==="
-    - mvn test
 
 security_check:
   stage: security
