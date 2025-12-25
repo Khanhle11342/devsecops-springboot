@@ -1,24 +1,48 @@
-image: maven:3.9.6-eclipse-temurin-17
-
-services:
-  - docker:dind
-
 stages:
   - build
-  - docker
+  - test
+  - security
+  - deploy
 
 build:
   stage: build
+  tags:
+    - ubuntu
   script:
+    - echo "=== BUILD SPRING BOOT APPLICATION ==="
     - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
-docker-build:
-  stage: docker
-  image: docker:24
-  services:
-    - docker:dind
-  variables:
-    DOCKER_TLS_CERTDIR: ""
+test:
+  stage: test
+  tags:
+    - ubuntu
   script:
-    - docker build -t shoeshop-app .
+    - echo "=== RUN UNIT TESTS ==="
+    - mvn test
 
+security_check:
+  stage: security
+  tags:
+    - ubuntu
+  script:
+    - echo "=== SECURITY CHECK STAGE ==="
+    - echo "Static code analysis and dependency scanning (conceptual)"
+  allow_failure: true
+
+deploy:
+  stage: deploy
+  tags:
+    - ubuntu
+  dependencies:
+    - build
+  script:
+    - ls -l target
+    - echo "=== DEPLOY SPRING BOOT APPLICATION ==="
+    - pkill -f 'java -jar' || true
+    - nohup java -jar target/*.jar > app.log 2>&1 &
+  only:
+    - main
