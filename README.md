@@ -1,18 +1,30 @@
-shdhsdsdsd
- Shoe-Shopping-Cart
-Shoe Shopping Cart built with SpringBoot, JPA, MySQL , Spring Security, Hibernate and Thymeleaf
+DO AN CHUYEN NGANH 2
+# DevSecOps CI/CD Pipeline for Spring Boot Application
 
-![image](https://user-images.githubusercontent.com/29988949/75882730-9ad11680-5dd6-11ea-9648-252426582a96.png)
+## Overview
+This project demonstrates a DevSecOps pipeline for a Spring Boot web application.
 
+## Tech Stack
+- Spring Boot
+- Maven
+- MySQL
+- Docker
+- GitLab CI/CD
 
-![image](https://user-images.githubusercontent.com/29988949/75947593-c6dfac80-5e55-11ea-8582-bce667beb9bb.png)
+## Features
+- Product management
+- Shopping cart
+- Authentication with Spring Security
 
-`ProductList Page`
+## DevOps Pipeline
+1. Source code managed in GitHub
+2. CI/CD pipeline using GitLab
+3. Build using Maven
+4. Docker image creation
+5. Container deployment
 
-![image](https://user-images.githubusercontent.com/29988949/75968115-bf35fd00-5e81-11ea-9bae-e78ff047dcfd.png)
+## Run with Docker
 
-`Cart Page`
+docker build -t shoeshop .
+docker run -p 8080:8080 shoeshop
 
-![image](https://user-images.githubusercontent.com/29988949/75956013-da960d80-5e6b-11ea-84b2-a0ca854ef9c9.png)
-
-ĐO AN CO SO 2
